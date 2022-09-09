@@ -1,0 +1,340 @@
+import axios from "axios";
+
+export function showtoast(toast, title, description, status) {
+  return toast({
+    title: title,
+    description: description,
+    status: status,
+    duration: 5000,
+    isClosable: true,
+  });
+}
+
+const api = axios.create({
+  baseURL: "https://gamelist-backendserver.herokuapp.com/api",
+});
+
+export const creategame = async (
+  obj,
+  setloading,
+  toast
+  //   navigate
+) => {
+  try {
+    setloading(true);
+    const { data } = await api.post(`/creategame`, obj);
+    setloading(false);
+    showtoast(
+      toast,
+      "Success",
+      "Game has been created successfully",
+      "success"
+    );
+    // navigate("/admindashboard/users");
+  } catch (error) {
+    console.log(error.message);
+    setloading(false);
+
+    if (error.response.data.message) {
+      showtoast(toast, "Error", error.response.data.message, "error");
+    } else {
+      showtoast(toast, "Error", "Something went wrong", "error");
+    }
+  }
+};
+
+export const editgame = async (obj, setloading, toast, id, navigate) => {
+  try {
+    setloading(true);
+    const { data } = await api.put(`/editgame/${id}`, obj);
+    setloading(false);
+    showtoast(
+      toast,
+      "Success",
+      "Game has been updated successfully",
+      "success"
+    );
+    setTimeout(() => {
+      navigate("/admin/games");
+    }, 1000);
+  } catch (error) {
+    console.log(error.message);
+    setloading(false);
+
+    if (error.response.data.message) {
+      showtoast(toast, "Error", error.response.data.message, "error");
+    } else {
+      showtoast(toast, "Error", "Something went wrong", "error");
+    }
+  }
+};
+
+export const deletegame = async (toast, id, fetchagain, setfetchagain) => {
+  try {
+    const { data } = await api.delete(`/deletegame/${id}`);
+    showtoast(
+      toast,
+      "Success",
+      "Game has been deleted successfully",
+      "success"
+    );
+    setfetchagain(!fetchagain);
+  } catch (error) {
+    console.log(error.message);
+    if (error.response.data.message) {
+      showtoast(toast, "Error", error.response.data.message, "error");
+    } else {
+      showtoast(toast, "Error", "Something went wrong", "error");
+    }
+  }
+};
+
+export const getAllgames = async (setloading, toast, setdata) => {
+  try {
+    setloading(true);
+    const { data } = await api.get(`/games`);
+    setdata(data.data);
+    setloading(false);
+  } catch (error) {
+    console.log(error.message);
+    setloading(false);
+
+    if (error.response.data.message) {
+      showtoast(toast, "Error", error.response.data.message, "error");
+    } else {
+      showtoast(toast, "Error", "Something went wrong", "error");
+    }
+  }
+};
+
+export const getcategorygames = async (setloading, toast, setdata, id) => {
+  try {
+    setloading(true);
+    const { data } = await api.get(`/categorygames/${id}`);
+    setdata(data.data);
+    setloading(false);
+  } catch (error) {
+    console.log(error.message);
+    setloading(false);
+
+    if (error.response.data.message) {
+      showtoast(toast, "Error", error.response.data.message, "error");
+    } else {
+      showtoast(toast, "Error", "Something went wrong", "error");
+    }
+  }
+};
+
+export const getAllcategories = async (setloading, toast, setdata) => {
+  try {
+    setloading(true);
+    const { data } = await api.get(`/gamecategories`);
+    setdata(data.data);
+    setloading(false);
+  } catch (error) {
+    console.log(error.message);
+    setloading(false);
+
+    if (error.response.data.message) {
+      showtoast(toast, "Error", error.response.data.message, "error");
+    } else {
+      showtoast(toast, "Error", "Something went wrong", "error");
+    }
+  }
+};
+
+export const creategamecategory = async (
+  obj,
+  setloading,
+  toast
+  //   navigate
+) => {
+  try {
+    setloading(true);
+    const { data } = await api.post(`/creategamecategory`, obj);
+    setloading(false);
+    showtoast(
+      toast,
+      "Success",
+      "Game Category has been created successfully",
+      "success"
+    );
+    // navigate("/admindashboard/users");
+  } catch (error) {
+    console.log(error.message);
+    setloading(false);
+
+    if (error.response.data.message) {
+      showtoast(toast, "Error", error.response.data.message, "error");
+    } else {
+      showtoast(toast, "Error", "Something went wrong", "error");
+    }
+  }
+};
+
+export const editgamecategory = async (
+  obj,
+  setloading,
+  toast,
+  id,
+  navigate
+) => {
+  try {
+    setloading(true);
+    const { data } = await api.put(`/editgamecategory/${id}`, obj);
+    setloading(false);
+    showtoast(
+      toast,
+      "Success",
+      "Game has been updated successfully",
+      "success"
+    );
+    setTimeout(() => {
+      navigate("/admin/categories");
+    }, 1000);
+  } catch (error) {
+    console.log(error.message);
+    setloading(false);
+
+    if (error.response.data.message) {
+      showtoast(toast, "Error", error.response.data.message, "error");
+    } else {
+      showtoast(toast, "Error", "Something went wrong", "error");
+    }
+  }
+};
+
+export const deletegamecategory = async (
+  toast,
+  id,
+  fetchagain,
+  setfetchagain
+) => {
+  try {
+    const { data } = await api.delete(`/deletegamecategory/${id}`);
+    showtoast(
+      toast,
+      "Success",
+      "Game has been deleted successfully",
+      "success"
+    );
+    setfetchagain(!fetchagain);
+  } catch (error) {
+    console.log(error.message);
+    if (error.response.data.message) {
+      showtoast(toast, "Error", error.response.data.message, "error");
+    } else {
+      showtoast(toast, "Error", "Something went wrong", "error");
+    }
+  }
+};
+
+export const createarticle = async (
+  obj,
+  setloading,
+  toast
+  //   navigate
+) => {
+  try {
+    setloading(true);
+    const { data } = await api.post(`/createarticle`, obj);
+    setloading(false);
+    showtoast(
+      toast,
+      "Success",
+      "Article has been created successfully",
+      "success"
+    );
+    // navigate("/admindashboard/users");
+  } catch (error) {
+    console.log(error.message);
+    setloading(false);
+
+    if (error.response.data.message) {
+      showtoast(toast, "Error", error.response.data.message, "error");
+    } else {
+      showtoast(toast, "Error", "Something went wrong", "error");
+    }
+  }
+};
+
+export const editarticle = async (obj, setloading, toast, id, navigate) => {
+  try {
+    setloading(true);
+    const { data } = await api.put(`/editarticle/${id}`, obj);
+    setloading(false);
+    showtoast(
+      toast,
+      "Success",
+      "Article has been updated successfully",
+      "success"
+    );
+    setTimeout(() => {
+      navigate("/admin/articles");
+    }, 1000);
+  } catch (error) {
+    console.log(error.message);
+    setloading(false);
+
+    if (error.response.data.message) {
+      showtoast(toast, "Error", error.response.data.message, "error");
+    } else {
+      showtoast(toast, "Error", "Something went wrong", "error");
+    }
+  }
+};
+
+export const deletearticle = async (toast, id, fetchagain, setfetchagain) => {
+  try {
+    const { data } = await api.delete(`/deletearticle/${id}`);
+    showtoast(
+      toast,
+      "Success",
+      "Article has been deleted successfully",
+      "success"
+    );
+    setfetchagain(!fetchagain);
+  } catch (error) {
+    console.log(error.message);
+    if (error.response.data.message) {
+      showtoast(toast, "Error", error.response.data.message, "error");
+    } else {
+      showtoast(toast, "Error", "Something went wrong", "error");
+    }
+  }
+};
+
+export const getarticles = async (setloading, toast, setdata) => {
+  try {
+    setloading(true);
+    const { data } = await api.get(`/getarticles`);
+    setdata(data.data);
+    setloading(false);
+  } catch (error) {
+    console.log(error.message);
+    setloading(false);
+
+    if (error.response.data.message) {
+      showtoast(toast, "Error", error.response.data.message, "error");
+    } else {
+      showtoast(toast, "Error", "Something went wrong", "error");
+    }
+  }
+};
+export const getarticle = async (setloading, toast, setdata, id) => {
+  try {
+    setloading(true);
+    const { data } = await api.get(`/getarticle/${id}`);
+    setdata(data.data);
+    setloading(false);
+  } catch (error) {
+    console.log(error.message);
+    setloading(false);
+
+    if (error.response.data.message) {
+      showtoast(toast, "Error", error.response.data.message, "error");
+    } else {
+      showtoast(toast, "Error", "Something went wrong", "error");
+    }
+  }
+};
