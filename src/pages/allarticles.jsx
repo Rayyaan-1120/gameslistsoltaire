@@ -55,9 +55,9 @@ export default function Allarticles(){
                              })}>
                                  Edit
                              </Button>
-                             <Button onClick={() => delarticle(article?._id)}>
+                             {/* <Button onClick={() => delarticle(article?._id)}>
                                  Delete
-                             </Button>
+                             </Button> */}
                           </Stack> 
                         </Box>
                     </GridItem>

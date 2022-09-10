@@ -83,9 +83,6 @@ export default function Allcolumn(){
                              })}>
                                  Edit
                              </Button>
-                             <Button onClick={() => delcol(column?._id)}>
-                                 Delete
-                             </Button>
                           </Stack> 
                         </Box>
                     </GridItem>

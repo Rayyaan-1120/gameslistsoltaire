@@ -12,6 +12,7 @@ export function showtoast(toast, title, description, status) {
 
 const api = axios.create({
   baseURL: "https://gamelist-backendserver.herokuapp.com/api",
+  // baseURL: "http://localhost:5000/api",
 });
 
 export const creategame = async (
@@ -89,6 +90,23 @@ export const deletegame = async (toast, id, fetchagain, setfetchagain) => {
   }
 };
 
+export const gethomepagegames = async (setloading, toast, setdata) => {
+  try {
+    setloading(true);
+    const { data } = await api.get(`/gethomepagegames`);
+    setdata(data.data);
+    setloading(false);
+  } catch (error) {
+    console.log(error.message);
+    setloading(false);
+
+    if (error.response.data.message) {
+      showtoast(toast, "Error", error.response.data.message, "error");
+    } else {
+      showtoast(toast, "Error", "Something went wrong", "error");
+    }
+  }
+};
 export const getAllgames = async (setloading, toast, setdata) => {
   try {
     setloading(true);
@@ -453,6 +471,31 @@ export const adminlogin = async (obj, setloading, toast, setdata, navigate) => {
     }
   }
 };
+export const updateadmin = async (
+  obj,
+  setloading,
+  toast,
+  setdata,
+  navigate
+) => {
+  try {
+    setloading(true);
+    const { data } = await api.put(`/updateadmin`, obj);
+    setdata(true);
+    localStorage.setItem("admin", JSON.stringify(true));
+    showtoast(toast, "Success", "Password updated successfully", "success");
+    setloading(false);
+  } catch (error) {
+    console.log(error.message);
+    setloading(false);
+
+    if (error.response.data.message) {
+      showtoast(toast, "Error", error.response.data.message, "error");
+    } else {
+      showtoast(toast, "Error", "Something went wrong", "error");
+    }
+  }
+};
 
 export const adminlogout = (toast, setadmin, navigate) => {
   setadmin(false);
@@ -546,6 +589,50 @@ export const deletescript = async (toast, id, fetchagain, setfetchagain) => {
     setfetchagain(!fetchagain);
   } catch (error) {
     console.log(error.message);
+    if (error.response.data.message) {
+      showtoast(toast, "Error", error.response.data.message, "error");
+    } else {
+      showtoast(toast, "Error", "Something went wrong", "error");
+    }
+  }
+};
+
+export const editslidertext = async (obj, setloading, toast, id, navigate) => {
+  try {
+    setloading(true);
+    const { data } = await api.put(`/editslidertext/${id}`, obj);
+    setloading(false);
+    showtoast(
+      toast,
+      "Success",
+      "Slider text has been updated successfully",
+      "success"
+    );
+    setTimeout(() => {
+      navigate("/admin/slidertexts");
+    }, 1000);
+  } catch (error) {
+    console.log(error.message);
+    setloading(false);
+
+    if (error.response.data.message) {
+      showtoast(toast, "Error", error.response.data.message, "error");
+    } else {
+      showtoast(toast, "Error", "Something went wrong", "error");
+    }
+  }
+};
+
+export const getslidertext = async (setloading, toast, setdata) => {
+  try {
+    setloading(true);
+    const { data } = await api.get(`/getslidertext`);
+    setdata(data.data);
+    setloading(false);
+  } catch (error) {
+    console.log(error.message);
+    setloading(false);
+
     if (error.response.data.message) {
       showtoast(toast, "Error", error.response.data.message, "error");
     } else {

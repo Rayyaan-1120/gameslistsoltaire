@@ -1,17 +1,22 @@
 .uppercontainer{
-     /* background-image: url("./images/rtpbackground-1.webp");
+     background-image: url("./images/rtpbackground-1.webp");
       background-repeat: no-repeat;
         background-attachment: fixed;
         width: 100%;
         min-height: 100vh;
         background-position: center center !important;
-        background-size: cover !important; */
+        background-size: cover !important;
 }
 
 .container {
     /* max-width: 980px; */
     margin: auto;
     padding: 0 15px;
+    /* background-image: url("./images/rtpbackground-1.webp") !important;
+      background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center center !important;
+        background-size: cover !important; */
    
 }
 
@@ -225,9 +230,14 @@ background: linear-gradient(to bottom, #f5cc00 0%, #ffd400 46%, #fff702 100%);
 
 .sidebar img {
     height: 55px;
+    margin: auto;
+    text-align: center;
 }
 .sidebarfull img {
     height: 55px;
+        margin: auto;
+    text-align: center;
+
 }
 
 .sidebarContainer {

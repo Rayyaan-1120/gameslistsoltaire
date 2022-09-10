@@ -21,7 +21,7 @@ import { useNavigate } from 'react-router-dom';
 import { adminlogout } from '../../api';
 import { useAppContext } from '../context';
 
-const Links = ['create game', 'create category', 'games','categories','create article','articles','create column','column','create script','scripts'];
+const Links = ['create game', 'create category', 'games','categories','articles','column','create script','scripts','slider texts','update password'];
 
 const NavLink = ({ children,link }) => {
 
@@ -60,29 +60,15 @@ export default function AdminNavbar() {
            
           
           </HStack>
-           <Menu>
-              <MenuButton
-                as={Button}
-                rounded={'full'}
-                cursor={'pointer'}
-                minW={0}>
-                <Button bg={'blue.300'} color="#fff">
-                    Menu
-                </Button>
-              </MenuButton>
-              <MenuList>
-                 {Links.map((link) => (
-                    <MenuItem>
+          
+            <HStack>
+                  {Links.map((link) => (
                 <NavLink key={link} link={link}>{link}</NavLink>
-                </MenuItem>
               ))}
-               <MenuItem>
-               <Button onClick={() => adminlogout(toast,setadmin,navigate)} bg={'red.500'} color="#fff">
+              <Button onClick={() => adminlogout(toast,setadmin,navigate)} bg={'red.500'} color="#fff">
                     Logout
                 </Button>
-               </MenuItem>
-              </MenuList>
-            </Menu>
+            </HStack>
         </Flex>
 
         {isOpen ? (

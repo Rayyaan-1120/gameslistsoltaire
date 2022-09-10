@@ -58,7 +58,6 @@ export const Grid = ({ data, callfunction, provider, loading }) => {
                 // alignItems: "center",
                 // justifyContent: "center",
                 margin: "auto",
-                background: "yellow",
               }}
             >
               <div className="basic"></div>
