@@ -17,29 +17,23 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
 import {
   createarticle,
   creategamecategory,
-  editarticle,
+  createscript,
   getAllcategories,
   showtoast,
 } from "../api";
 
-export default function Editarticle() {
-
-    const locationstate = useLocation().state
-  const navigate = useNavigate()
-
-
+export default function Createscript() {
   const [loading, setloading] = useState(false);
-  const [articleheading, setarticleheading] = useState(locationstate ? locationstate.articleheading :"");
-  const [article, setarticle] = useState(locationstate ? locationstate.article : "");
+  const [src, setsrc] = useState("");
+  const [id, setid] = useState("");
 
   const toast = useToast();
 
-  const update = () => {
-    if (!articleheading || !article) {
+  const create = () => {
+    if (!src || !id) {
       return showtoast(
         toast,
         "Empty Fields",
@@ -49,11 +43,11 @@ export default function Editarticle() {
     }
 
     const obj = {
-      article,
-      articleheading,
+      src,
+      id,
     };
 
-    editarticle(obj, setloading, toast,locationstate?._id,navigate);
+    createscript(obj, setloading, toast);
   };
 
 
@@ -68,7 +62,7 @@ export default function Editarticle() {
       >
         <Stack spacing={8} maxW={"full"} py={12} px={6}>
           <Stack align={"center"}>
-            <Heading fontSize={"4xl"}>Edit Article</Heading>
+            <Heading fontSize={"4xl"}>Create Script</Heading>
           </Stack>
           <Box
             rounded={"lg"}
@@ -79,34 +73,34 @@ export default function Editarticle() {
             p={8}
           >
             <Stack spacing={4}>
-              
+             
               <FormControl>
-                <FormLabel>Article Heading</FormLabel>
+                <FormLabel>Script src</FormLabel>
                 <Input
                   type="text"
-                  value={articleheading}
-                  onChange={(e) => setarticleheading(e.target.value)}
+                  value={src}
+                  onChange={(e) => setsrc(e.target.value)}
                 />
               </FormControl>
               <FormControl>
-                <FormLabel>Main Article</FormLabel>
-                <Textarea
-                  onChange={(e) => setarticle(e.target.value)}
-                  value={article}
-                  size="lg"
+                <FormLabel>Script id</FormLabel>
+                <Input
+                  type="text"
+                  value={id}
+                  onChange={(e) => setid(e.target.value)}
                 />
               </FormControl>
 
               <Stack spacing={10}>
                 <Button
-                  onClick={update}
+                  onClick={create}
                   bg={"blue.400"}
                   color={"white"}
                   _hover={{
                     bg: "blue.500",
                   }}
                 >
-                  Update
+                  Create
                 </Button>
               </Stack>
             </Stack>

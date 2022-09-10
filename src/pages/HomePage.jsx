@@ -3,12 +3,15 @@ import {
   getAllcategories,
   getAllgames,
   getarticle,
+  getarticles,
   getcategorygames,
+  getcolumn,
 } from "../api";
 import { useToast } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import classes from "../App.module.css";
 import { useNavigate } from "react-router-dom";
+import parse from 'html-react-parser'
 
 export const Homepage = () => {
   const toast = useToast();
@@ -17,8 +20,10 @@ export const Homepage = () => {
   const [loading, setloading] = useState(true);
   const [loadingtwo, setloadingtwo] = useState(true);
   const [loadingthree, setloadingthree] = useState(true);
+  const [loadingfour,setloadingfour] = useState(true);
   const [callfunction, setcallfunction] = useState(false);
   const [articles, setarticles] = useState([]);
+  const [columns, setcolumns] = useState([])
 
   const [gamecategories, setgamecategories] = useState([]);
 
@@ -35,10 +40,12 @@ export const Homepage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (gamecategories.length > 0) {
-      getarticle(setloadingthree, toast, setarticles, gamecategories[0]?._id);
-    }
-  }, [gamecategories]);
+      getarticles(setloadingthree, toast, setarticles);
+  }, []);
+
+  useEffect(() => {
+       getcolumn(setloadingfour,toast,setcolumns)
+    },[])
 
   return (
     <div className={classes.uppercontainer}>
@@ -49,38 +56,51 @@ export const Homepage = () => {
             TERGACOR** BT88RTP **
           </div>
         </div>
-
+ 
+     {loadingfour ? (
+  <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <div className="basic"></div>
+            </div>
+     ) : (
         <table>
           <thead>
             <tr>
-              <th>NAMA SITUS</th>
-              <th>MINIMAL DEPOSIT</th>
-              <th>DAFTAR & LOGIN</th>
+              <th>{columns && columns[0]?.columnoneheading}</th>
+              <th>{columns && columns[0]?.columntwoheading}</th>
+              <th>{columns && columns[0]?.columnthreeheading}</th>
             </tr>
           </thead>
 
           <tbody>
             <tr>
-              <td>BINTANG TOGEL88</td>
-              <td>RP 10.000</td>
+              <td>{columns && columns[0]?.columnonetextone}</td>
+              <td>{columns && columns[0]?.columntwotextone}</td>
               <td>
-                <a target="_blank" href="https://rebrand.ly/duabt-rtp">
-                  DAFTAR
+                <a target="_blank" href={columns && columns[0]?.columnthreebuttononelink}>
+                  {columns && columns[0]?.columnthreebuttonone}
                 </a>
               </td>
             </tr>
 
             <tr>
-              <td>BNB303</td>
-              <td>RP 10.000</td>
+              <td>{columns && columns[0]?.columnonetexttwo}</td>
+              <td>{columns && columns[0]?.columntwotexttwo}</td>
               <td>
-                <a target="_blank" href="https://rebrand.ly/daftar-bnb303-1">
-                  DAFTAR
+                <a target="_blank" href={columns && columns[0]?.columnthreebuttontwolink}>
+                  {columns && columns[0]?.columnthreebuttontwo}
                 </a>
               </td>
             </tr>
           </tbody>
         </table>
+
+     ) }
 
 
         <section
@@ -165,9 +185,7 @@ export const Homepage = () => {
                   <h1>
                     <strong>{art?.articleheading}</strong>
                   </h1>
-                  {art?.article?.split(".").map((p) => {
-                    return <p>{p}</p>;
-                  })}
+                  {parse(art?.article)}
                 </>
               );
             })}

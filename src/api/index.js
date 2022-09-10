@@ -338,3 +338,218 @@ export const getarticle = async (setloading, toast, setdata, id) => {
     }
   }
 };
+
+export const createcoulmn = async (
+  obj,
+  setloading,
+  toast
+  //   navigate
+) => {
+  try {
+    setloading(true);
+    const { data } = await api.post(`/createcolumn`, obj);
+    setloading(false);
+    showtoast(
+      toast,
+      "Success",
+      "Column has been created successfully",
+      "success"
+    );
+    // navigate("/admindashboard/users");
+  } catch (error) {
+    console.log(error.message);
+    setloading(false);
+
+    if (error.response.data.message) {
+      showtoast(toast, "Error", error.response.data.message, "error");
+    } else {
+      showtoast(toast, "Error", "Something went wrong", "error");
+    }
+  }
+};
+
+export const editcolumn = async (obj, setloading, toast, id, navigate) => {
+  try {
+    setloading(true);
+    const { data } = await api.put(`/editcolumn/${id}`, obj);
+    setloading(false);
+    showtoast(
+      toast,
+      "Success",
+      "Table Column has been updated successfully",
+      "success"
+    );
+    setTimeout(() => {
+      navigate("/admin/column");
+    }, 1000);
+  } catch (error) {
+    console.log(error.message);
+    setloading(false);
+
+    if (error.response.data.message) {
+      showtoast(toast, "Error", error.response.data.message, "error");
+    } else {
+      showtoast(toast, "Error", "Something went wrong", "error");
+    }
+  }
+};
+
+export const deletecolumn = async (toast, id, fetchagain, setfetchagain) => {
+  try {
+    const { data } = await api.delete(`/deletecolumn/${id}`);
+    showtoast(
+      toast,
+      "Success",
+      "Column has been deleted successfully",
+      "success"
+    );
+    setfetchagain(!fetchagain);
+  } catch (error) {
+    console.log(error.message);
+    if (error.response.data.message) {
+      showtoast(toast, "Error", error.response.data.message, "error");
+    } else {
+      showtoast(toast, "Error", "Something went wrong", "error");
+    }
+  }
+};
+
+export const getcolumn = async (setloading, toast, setdata) => {
+  try {
+    setloading(true);
+    const { data } = await api.get(`/getcolumn`);
+    setdata(data.data);
+    setloading(false);
+  } catch (error) {
+    console.log(error.message);
+    setloading(false);
+
+    if (error.response.data.message) {
+      showtoast(toast, "Error", error.response.data.message, "error");
+    } else {
+      showtoast(toast, "Error", "Something went wrong", "error");
+    }
+  }
+};
+
+export const adminlogin = async (obj, setloading, toast, setdata, navigate) => {
+  try {
+    setloading(true);
+    const { data } = await api.post(`/loginadmin`, obj);
+    setdata(true);
+    localStorage.setItem("admin", JSON.stringify(true));
+    showtoast(toast, "Success", "Logged in successfully", "success");
+    // localStorage.getItem("admin");
+    setloading(false);
+    navigate("/admin/games");
+  } catch (error) {
+    console.log(error.message);
+    setloading(false);
+
+    if (error.response.data.message) {
+      showtoast(toast, "Error", error.response.data.message, "error");
+    } else {
+      showtoast(toast, "Error", "Something went wrong", "error");
+    }
+  }
+};
+
+export const adminlogout = (toast, setadmin, navigate) => {
+  setadmin(false);
+  localStorage.removeItem("admin");
+  showtoast(toast, "Success", "Logged out successfully", "success");
+  navigate("/adminlogin");
+};
+
+export const createscript = async (
+  obj,
+  setloading,
+  toast
+  //   navigate
+) => {
+  try {
+    setloading(true);
+    const { data } = await api.post(`/createscript`, obj);
+    setloading(false);
+    showtoast(
+      toast,
+      "Success",
+      "Script has been created successfully",
+      "success"
+    );
+    // navigate("/admindashboard/users");
+  } catch (error) {
+    console.log(error.message);
+    setloading(false);
+
+    if (error.response.data.message) {
+      showtoast(toast, "Error", error.response.data.message, "error");
+    } else {
+      showtoast(toast, "Error", "Something went wrong", "error");
+    }
+  }
+};
+
+export const editscript = async (obj, setloading, toast, id, navigate) => {
+  try {
+    setloading(true);
+    const { data } = await api.put(`/editscript/${id}`, obj);
+    setloading(false);
+    showtoast(
+      toast,
+      "Success",
+      "Script has been updated successfully",
+      "success"
+    );
+    setTimeout(() => {
+      navigate("/admin/scripts");
+    }, 1000);
+  } catch (error) {
+    console.log(error.message);
+    setloading(false);
+
+    if (error.response.data.message) {
+      showtoast(toast, "Error", error.response.data.message, "error");
+    } else {
+      showtoast(toast, "Error", "Something went wrong", "error");
+    }
+  }
+};
+
+export const getscripts = async (setloading, toast, setdata) => {
+  try {
+    setloading(true);
+    const { data } = await api.get(`/getscripts`);
+    setdata(data.data);
+    setloading(false);
+  } catch (error) {
+    console.log(error.message);
+    setloading(false);
+
+    if (error.response.data.message) {
+      showtoast(toast, "Error", error.response.data.message, "error");
+    } else {
+      showtoast(toast, "Error", "Something went wrong", "error");
+    }
+  }
+};
+
+export const deletescript = async (toast, id, fetchagain, setfetchagain) => {
+  try {
+    const { data } = await api.delete(`/deletescript/${id}`);
+    showtoast(
+      toast,
+      "Success",
+      "Script has been deleted successfully",
+      "success"
+    );
+    setfetchagain(!fetchagain);
+  } catch (error) {
+    console.log(error.message);
+    if (error.response.data.message) {
+      showtoast(toast, "Error", error.response.data.message, "error");
+    } else {
+      showtoast(toast, "Error", "Something went wrong", "error");
+    }
+  }
+};

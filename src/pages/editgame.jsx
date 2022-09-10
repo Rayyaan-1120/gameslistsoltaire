@@ -36,7 +36,9 @@ export default function EditGame() {
   const [orangetitle, setorangetitle] = useState(locationstate ? locationstate.orangetitle :"");
   const [note, setnote] = useState(locationstate ? locationstate.note :"");
   const [buttonone, setbuttonone] = useState( locationstate ? locationstate.buttonone :"");
+  const [buttononelink, setbuttononelink] = useState( locationstate?.buttononelink ? locationstate.buttononelink :"");
   const [buttontwo, setbuttontwo] = useState( locationstate ? locationstate.buttontwo :"");
+  const [buttontwolink, setbuttontwolink] = useState( locationstate?.buttontwolink ? locationstate.buttontwolink :"");
   const [categories, setcategories] = useState([]);
 
   const toast = useToast();
@@ -54,7 +56,9 @@ export default function EditGame() {
       !orangetitle ||
       !note ||
       !buttonone ||
-      !buttontwo
+      !buttontwo || 
+      !buttononelink || 
+      !buttontwolink
     ) {
       return showtoast(
         toast,
@@ -76,7 +80,8 @@ export default function EditGame() {
     form.append("orangetitle", orangetitle);
     form.append("note", note);
     form.append("buttonone", buttonone);
-    form.append("buttontwo", buttontwo);
+    form.append("buttononelink", buttononelink);
+    form.append("buttontwolink", buttontwolink);
 
     editgame(form, setloading, toast,locationstate?._id,navigate);
   };
@@ -196,11 +201,27 @@ export default function EditGame() {
                 />
               </FormControl>
               <FormControl>
+                <FormLabel>Button one Link</FormLabel>
+                <Input
+                  type="text"
+                  value={buttononelink}
+                  onChange={(e) => setbuttononelink(e.target.value)}
+                />
+              </FormControl>
+              <FormControl>
                 <FormLabel>Button two text</FormLabel>
                 <Input
                   type="text"
                   value={buttontwo}
                   onChange={(e) => setbuttontwo(e.target.value)}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel>Button two Link</FormLabel>
+                <Input
+                  type="text"
+                  value={buttontwolink}
+                  onChange={(e) => setbuttontwolink(e.target.value)}
                 />
               </FormControl>
 

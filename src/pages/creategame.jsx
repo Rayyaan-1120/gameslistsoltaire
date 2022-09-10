@@ -32,6 +32,8 @@ export default function Creategame() {
   const [orangetitle, setorangetitle] = useState("");
   const [note, setnote] = useState("");
   const [buttonone, setbuttonone] = useState("");
+  const [buttononelink,setbuttononelink] = useState("")
+  const [buttontwolink,setbuttontwolink] = useState("")
   const [buttontwo, setbuttontwo] = useState("");
   const [categories, setcategories] = useState([]);
 
@@ -49,7 +51,9 @@ export default function Creategame() {
       !orangetitle ||
       !note ||
       !buttonone ||
-      !buttontwo
+      !buttontwo ||
+      !buttononelink ||
+      !buttontwolink
     ) {
       return showtoast(
         toast,
@@ -71,6 +75,8 @@ export default function Creategame() {
     form.append("orangetitle", orangetitle);
     form.append("note", note);
     form.append("buttonone", buttonone);
+    form.append("buttononelink", buttononelink);
+    form.append("buttontwolink", buttontwolink);
     form.append("buttontwo", buttontwo);
 
     creategame(form, setloading, toast);
@@ -191,6 +197,14 @@ export default function Creategame() {
                 />
               </FormControl>
               <FormControl>
+                <FormLabel>Button one Link</FormLabel>
+                <Input
+                  type="text"
+                  value={buttononelink}
+                  onChange={(e) => setbuttononelink(e.target.value)}
+                />
+              </FormControl>
+              <FormControl>
                 <FormLabel>Button two text</FormLabel>
                 <Input
                   type="text"
@@ -198,7 +212,14 @@ export default function Creategame() {
                   onChange={(e) => setbuttontwo(e.target.value)}
                 />
               </FormControl>
-
+ <FormControl>
+                <FormLabel>Button two Link</FormLabel>
+                <Input
+                  type="text"
+                  value={buttontwolink}
+                  onChange={(e) => setbuttontwolink(e.target.value)}
+                />
+              </FormControl>
               <Stack spacing={10}>
                 <Button
                 onClick={create}

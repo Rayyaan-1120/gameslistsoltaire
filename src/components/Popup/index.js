@@ -1,11 +1,8 @@
 import classes from "./style.module.css";
 import Image from "../../images/ST7jTl.png";
+import parse from "html-react-parser";
 
 export const Popup = ({ close, value, provider }) => {
-  console.log(value.rtp, "rtp");
-
-  let rtp = 60;
-
   return (
     <div className={classes.popup}>
       <div className={classes.container}>
@@ -41,7 +38,7 @@ export const Popup = ({ close, value, provider }) => {
             </div>
             <div className={classes.subheading}>{value.paragraphtitle}</div>
             <div className={[classes.body, classes.content].join(" ")}>
-              <p>{value?.paragraph}</p>
+              {parse(value?.paragraph)}
               {/* <p>{value.step1}X Spin normal (manual tanpa ceklis)</p>
 
               <p>Step 1: Panaskan Mesin Slot!</p>
@@ -58,16 +55,26 @@ export const Popup = ({ close, value, provider }) => {
               className={[classes.body, classes.content].join(" ")}
               style={{ padding: "10px 24px" }}
             >
-              <p style={{ marginTop: 0 }}>Note:</p>
-              <p>{value?.note}</p>
+              {/* <p style={{ marginTop: 0 }}>Note:</p> */}
+              {parse(value?.note)}
             </div>
             <div className={classes.buttons}>
-              <button>{value?.buttonone}</button>
-              <button>{value?.buttonone}</button>
-            </div>
-            <div className={classes.buttons}>
-              <button>{value?.buttontwo}</button>
-              <button>{value?.buttontwo}</button>
+              <button>
+                <a
+                  target={"_blank"}
+                  href={value?.buttononelink ? value?.buttononelink : "#"}
+                >
+                  {value?.buttonone}
+                </a>
+              </button>
+              <button>
+                <a
+                  target={"_blank"}
+                  href={value?.buttontwolink ? value?.buttontwolink : "#"}
+                >
+                  {value?.buttonone}
+                </a>
+              </button>
             </div>
             {/* 
            

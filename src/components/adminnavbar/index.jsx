@@ -15,10 +15,13 @@ import {
   useDisclosure,
   useColorModeValue,
   Stack,
+  useToast,
 } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
+import { adminlogout } from '../../api';
+import { useAppContext } from '../context';
 
-const Links = ['create game', 'create category', 'games','categories','create article','articles'];
+const Links = ['create game', 'create category', 'games','categories','create article','articles','create column','column','create script','scripts'];
 
 const NavLink = ({ children,link }) => {
 
@@ -43,6 +46,10 @@ const NavLink = ({ children,link }) => {
 export default function AdminNavbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const toast = useToast();
+  const navigate = useNavigate()
+  const {setadmin} = useAppContext()
+
   return (
     <>
       <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
@@ -50,16 +57,32 @@ export default function AdminNavbar() {
           
           <HStack spacing={8} alignItems={'center'}>
             <Box>Admin Panel</Box>
-            <HStack
-              as={'nav'}
-              spacing={4}
-              display={{ base: 'none', md: 'flex' }}>
-              {Links.map((link) => (
-                <NavLink key={link} link={link}>{link}</NavLink>
-              ))}
-            </HStack>
-          </HStack>
+           
           
+          </HStack>
+           <Menu>
+              <MenuButton
+                as={Button}
+                rounded={'full'}
+                cursor={'pointer'}
+                minW={0}>
+                <Button bg={'blue.300'} color="#fff">
+                    Menu
+                </Button>
+              </MenuButton>
+              <MenuList>
+                 {Links.map((link) => (
+                    <MenuItem>
+                <NavLink key={link} link={link}>{link}</NavLink>
+                </MenuItem>
+              ))}
+               <MenuItem>
+               <Button onClick={() => adminlogout(toast,setadmin,navigate)} bg={'red.500'} color="#fff">
+                    Logout
+                </Button>
+               </MenuItem>
+              </MenuList>
+            </Menu>
         </Flex>
 
         {isOpen ? (
