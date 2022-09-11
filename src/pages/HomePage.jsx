@@ -99,7 +99,14 @@ const all = await Promise.all([gethomepagegames(setloadingtwo, toast, setgames),
               <td>{columns && columns[0]?.columnonetextone}</td>
               <td>{columns && columns[0]?.columntwotextone}</td>
               <td>
-                <a target="_blank" href={columns && columns[0]?.columnthreebuttononelink}>
+                <a target="_blank" 
+                 href={
+                    columns[0]?.columnthreebuttononelink.startsWith("http://") ||
+                    columns[0]?.columnthreebuttononelink.startsWith("https://")
+                      ? columns[0]?.columnthreebuttononelink
+                      : `//${columns[0]?.columnthreebuttononelink}`
+                  }
+                >
                   {columns && columns[0]?.columnthreebuttonone}
                 </a>
               </td>
@@ -109,7 +116,14 @@ const all = await Promise.all([gethomepagegames(setloadingtwo, toast, setgames),
               <td>{columns && columns[0]?.columnonetexttwo}</td>
               <td>{columns && columns[0]?.columntwotexttwo}</td>
               <td>
-                <a target="_blank" href={columns && columns[0]?.columnthreebuttontwolink}>
+                <a target="_blank" 
+                 href={
+                    columns[0]?.columnthreebuttontwolink.startsWith("http://") ||
+                    columns[0]?.columnthreebuttontwolink.startsWith("https://")
+                      ? columns[0]?.columnthreebuttontwolink
+                      : `//${columns[0]?.columnthreebuttontwolink}`
+                  }
+                >
                   {columns && columns[0]?.columnthreebuttontwo}
                 </a>
               </td>

@@ -62,7 +62,13 @@ export const Popup = ({ close, value, provider }) => {
               <button>
                 <a
                   target={"_blank"}
-                  href={value?.buttononelink ? value?.buttononelink : "#"}
+                  href={
+                    value?.buttononelink.startsWith("http://") ||
+                    value?.buttononelink.startsWith("https://")
+                      ? value?.buttononelink
+                      : `//${value?.buttononelink}`
+                  }
+                  // href={value?.buttononelink}
                 >
                   {value?.buttonone}
                 </a>
@@ -70,7 +76,12 @@ export const Popup = ({ close, value, provider }) => {
               <button>
                 <a
                   target={"_blank"}
-                  href={value?.buttontwolink ? value?.buttontwolink : "#"}
+                  href={
+                    value?.buttontwolink.startsWith("http://") ||
+                    value?.buttontwolink.startsWith("https://")
+                      ? value?.buttontwolink
+                      : `//${value?.buttontwolink}`
+                  }
                 >
                   {value?.buttonone}
                 </a>

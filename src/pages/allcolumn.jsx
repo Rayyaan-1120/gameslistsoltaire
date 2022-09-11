@@ -60,7 +60,12 @@ export default function Allcolumn(){
               <td>{column.columnonetextone}</td>
               <td>{column.columntwotextone}</td>
               <td>
-                <a target="_blank" href={column.columnthreebuttononelink}>
+                <a target="_blank" href={
+                    column?.columnthreebuttononelink.startsWith("http://") ||
+                    column?.columnthreebuttononelink.startsWith("https://")
+                      ? column?.columnthreebuttononelink
+                      : `//${column?.columnthreebuttononelink}`
+                  }>
                   {column.columnthreebuttonone}
                 </a>
               </td>
@@ -70,7 +75,12 @@ export default function Allcolumn(){
               <td>{column.columnonetexttwo}</td>
               <td>{column.columntwotexttwo}</td>
               <td>
-                <a target="_blank" href={column.columnthreebuttontwolink}>
+                <a target="_blank" href={
+                    column?.columnthreebuttontwolink.startsWith("http://") ||
+                    column?.columnthreebuttontwolink.startsWith("https://")
+                      ? column?.columnthreebuttontwolink
+                      : `//${column?.columnthreebuttontwolink}`
+                  }>
                   {column.columnthreebuttontwo}
                 </a>
               </td>
