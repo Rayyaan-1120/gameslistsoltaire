@@ -74,7 +74,7 @@ export const Grid = ({ data, callfunction, provider, loading }) => {
                       time_rand[random_time]
                     );
 
-                    var xx = Math.floor(Math.random() * 99) + 1;
+                    let xx = Math.floor(Math.random() * 99) + 1;
 
                     localStorage.setItem(provider + "_lastTime", currentTime);
                     localStorage.setItem(provider + "_xx_" + i, xx);
@@ -120,6 +120,12 @@ export const Grid = ({ data, callfunction, provider, loading }) => {
                     );
                   } else {
                     var xx = localStorage.getItem(provider + "_xx_" + i);
+
+                    if (xx === null) {
+                      xx = Math.floor(Math.random() * 99) + 1;
+
+                      localStorage.setItem(provider + "_xx_" + i, xx);
+                    }
 
                     var random_1 = localStorage.getItem(
                       "random_1_xx_" + provider + "_" + i

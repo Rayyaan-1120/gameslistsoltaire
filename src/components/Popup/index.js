@@ -3,6 +3,8 @@ import Image from "../../images/ST7jTl.png";
 import parse from "html-react-parser";
 
 export const Popup = ({ close, value, provider }) => {
+  console.log(value.rtp, "rtp");
+
   return (
     <div className={classes.popup}>
       <div className={classes.container}>
