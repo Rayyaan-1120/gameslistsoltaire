@@ -22,6 +22,7 @@ import { creategame, getAllcategories, showtoast } from "../api";
 export default function Creategame() {
   const [loading, setloading] = useState(false);
   const [gamename, setgamename] = useState("");
+  const [imagealttag,setimagealttag] = useState('')
   const [gamefile, setgamefile] = useState(null);
   const [gamecategoryid, setgamecategoryid] = useState("");
   const [topyellowtitle, settopyellowtitle] = useState("");
@@ -43,6 +44,7 @@ export default function Creategame() {
     if (
       !gamename ||
       !gamefile ||
+      !imagealttag ||
       !topyellowtitle ||
       !provider ||
       !stake ||
@@ -65,6 +67,7 @@ export default function Creategame() {
 
     const form = new FormData();
     form.append("gamename", gamename);
+    form.append('imagealttag',imagealttag)
     form.append("gamecategoryid",gamecategoryid)
     form.append("photo", gamefile[0]);
     form.append("topyellowtitle", topyellowtitle);
@@ -119,6 +122,14 @@ export default function Creategame() {
                 <Input
                   type="file"
                   onChange={(e) => setgamefile(e.target.files)}
+                />
+              </FormControl>
+                <FormControl>
+                <FormLabel>Image alt tag</FormLabel>
+                <Input
+                  type="text"
+                  value={imagealttag}
+                  onChange={(e) => setimagealttag(e.target.value)}
                 />
               </FormControl>
               <FormControl>

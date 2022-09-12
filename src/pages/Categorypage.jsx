@@ -52,7 +52,7 @@ export const Categorypage = () => {
         const asyncfunc = async () => {
            setmainloading(true)
             try{
-const all = await Promise.all([getcategorygames(setloadingtwo, toast, setgames,id),getAllcategories(setloading, toast, setgamecategories),getarticles(setloadingthree, toast, setarticles),getcolumn(setloadingfour,toast,setcolumns),getslidertext(setloadingfive,toast,setslidertext)])
+const all = await Promise.all([getcategorygames(setloadingtwo, toast, setgames,id),getAllcategories(setloading, toast, setgamecategories),getarticle(setloadingthree, toast, setarticles,id),getcolumn(setloadingfour,toast,setcolumns),getslidertext(setloadingfive,toast,setslidertext)])
 
             if(all){
                 setmainloading(false)
@@ -153,7 +153,9 @@ const all = await Promise.all([getcategorygames(setloadingtwo, toast, setgames,i
                       )
                     }
                   >
-                    <img src={gamecategories[0]?.gamecategoryimage} />
+                    <img src={gamecategories[0]?.gamecategoryimage} alt={
+                            gamecategories[0]?.imagealttag ? gamecategories[0].imagealttag : "No Image"
+                          } />
                     <div></div>
                   </a>
                 )}
@@ -172,7 +174,9 @@ const all = await Promise.all([getcategorygames(setloadingtwo, toast, setgames,i
                             )
                           }
                         >
-                          <img src={gamec?.gamecategoryimage} />
+                          <img src={gamec?.gamecategoryimage} alt={
+                            gamec?.imagealttag ? gamec.imagealttag : "No Image"
+                          }/>
                           <div></div>
                         </a>
                       </div>
@@ -203,7 +207,8 @@ const all = await Promise.all([getcategorygames(setloadingtwo, toast, setgames,i
 
         <footer>
           {articles &&
-            articles.map((art) => {
+            articles.map((art,index) => {
+                if(index > 0) return
               return (
                 <>
                   <h1>
@@ -213,6 +218,10 @@ const all = await Promise.all([getcategorygames(setloadingtwo, toast, setgames,i
                 </>
               );
             })}
+
+            {articles.length == 0 && (
+               <h1>No Article</h1>
+            )}
 
          
         </footer>

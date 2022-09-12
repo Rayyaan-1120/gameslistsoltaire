@@ -81,7 +81,7 @@ export const App = () => {
           <Route path="createcategory" element={<Creategamecategory />} />
           <Route path="editgamecategory" element={<Editgamecategory />} />
           <Route path="createarticle" element={<Createarticle />} />
-          {/* <Route path="editarticle" element={<Editarticle />} /> */}
+          <Route path="editarticle" element={<Editarticle />} />
           {/* <Route path="createcolumn" element={<Createcolumn />} /> */}
           <Route path="editcolumn" element={<Editcolumn />} />
           <Route path="createscript" element={<Createscript />} />

@@ -146,6 +146,9 @@ export const Grid = ({ data, callfunction, provider, loading }) => {
                         <img
                           src={item.gameimage}
                           onClick={openPopup.bind(this, item)}
+                          alt={
+                            item?.imagealttag ? item.imagealttag : "No Image"
+                          }
                         />
 
                         <div className={classes.overlay}>

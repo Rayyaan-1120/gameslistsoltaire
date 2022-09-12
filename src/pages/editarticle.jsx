@@ -35,6 +35,9 @@ export default function Editarticle() {
   const [loading, setloading] = useState(false);
   const [articleheading, setarticleheading] = useState(locationstate ? locationstate.articleheading :"");
   const [article, setarticle] = useState(locationstate ? locationstate.article : "");
+  const [articlecategoryid, setarticlecategoryid] = useState(locationstate.articlecategoryid ? locationstate.articlecategoryid :"");
+  const [categories, setcategories] = useState([]);
+
 
   const toast = useToast();
 
@@ -51,10 +54,16 @@ export default function Editarticle() {
     const obj = {
       article,
       articleheading,
+      articlecategoryid
     };
 
     editarticle(obj, setloading, toast,locationstate?._id,navigate);
   };
+
+  useEffect(() => {
+    getAllcategories(setloading, toast, setcategories);
+  }, []);
+
 
 
   return (
@@ -79,6 +88,17 @@ export default function Editarticle() {
             p={8}
           >
             <Stack spacing={4}>
+
+                  <FormControl>
+                <FormLabel>Article Category</FormLabel>
+                <Select defaultValue={articlecategoryid} placeholder="Select category" onChange={(e) => setarticlecategoryid(e.target.value)}>
+                  {categories.map((cat) => {
+                    return (
+                      <option selected={cat?._id == articlecategoryid} value={cat?._id}>{cat?.gamecategoryname}</option>
+                    );
+                  })}
+                </Select>
+              </FormControl>
               
               <FormControl>
                 <FormLabel>Article Heading</FormLabel>

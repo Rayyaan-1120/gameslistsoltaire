@@ -357,6 +357,24 @@ export const getarticle = async (setloading, toast, setdata, id) => {
   }
 };
 
+export const gethomepagearticle = async (setloading, toast, setdata) => {
+  try {
+    setloading(true);
+    const { data } = await api.get(`/gethomepagearticle`);
+    setdata(data.data);
+    setloading(false);
+  } catch (error) {
+    console.log(error.message);
+    setloading(false);
+
+    if (error.response.data.message) {
+      showtoast(toast, "Error", error.response.data.message, "error");
+    } else {
+      showtoast(toast, "Error", "Something went wrong", "error");
+    }
+  }
+};
+
 export const createcoulmn = async (
   obj,
   setloading,

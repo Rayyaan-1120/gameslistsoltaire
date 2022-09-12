@@ -27,6 +27,8 @@ export default function Editgamecategory() {
   const [loading, setloading] = useState(false);
   const [gamecategoryname, setgamecategoryname] = useState(locationstate ? locationstate.gamecategoryname :"");
   const [gamefile, setgamefile] = useState(null);
+  const [imagealttag,setimagealttag] = useState(locationstate.imagealttag ? locationstate.imagealttag :'')
+
 
   const toast = useToast();
 
@@ -47,6 +49,7 @@ export default function Editgamecategory() {
     const form = new FormData();
     form.append("gamecategoryname", gamecategoryname);
     form.append("photo", gamefile);
+    form.append('imagealttag',imagealttag)
 
     editgamecategory(form, setloading, toast,locationstate?._id,navigate);
   };
@@ -85,6 +88,14 @@ export default function Editgamecategory() {
                 <Input
                   type="file"
                   onChange={(e) => setgamefile(e.target.files[0])}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel>Image Alt tag</FormLabel>
+                <Input
+                  type="text"
+                  value={imagealttag}
+                  onChange={(e) => setimagealttag(e.target.value)}
                 />
               </FormControl>
              

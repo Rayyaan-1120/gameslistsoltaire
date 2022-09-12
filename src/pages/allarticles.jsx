@@ -22,6 +22,8 @@ export default function Allarticles(){
     const [loading,setloading] = useState(false);
     const [articles,setarticles] = useState([])
     const [fetchagain,setfetchagain] = useState(false)
+    const [gamecategories,setgamecategories] = useState([]) 
+
 
     const toast = useToast()
 
@@ -31,15 +33,36 @@ export default function Allarticles(){
 
     const navigate = useNavigate()
 
+     useEffect(() => {
+       getAllcategories(setloading,toast,setgamecategories)
+    },[])
+
     const delarticle = (id) => {
         deletearticle(toast,id,fetchagain,setfetchagain)
     }
 
+    const filtergames = (value) => {
+        if(value == 'default'){
+           return getarticles(setloading,toast,setarticles)
+        }else{
+            return getarticle(setloading,toast,setarticles,value)
+        }
+    }
 
     
     return(
         <Box w="full" bg={'gray.500'} minHeight="90vh">
              <Heading w="100%" textAlign={'center'}>All Articles</Heading>
+                <Select w={'30%'} mx="auto" mt={5} onChange={(e) => {
+                filtergames(e.target.value)
+             }}>
+                 <option selected value="default">All Categories</option>
+                 {gamecategories?.map((gc) => {
+                    return(
+                      <option value={gc._id}>{gc?.gamecategoryname}</option>
+                    )
+                 })}
+             </Select>
            <Grid w="100%" mt={10} mx="auto" templateColumns={'repeat(1, 1fr)'} gap={6}>
               {articles.length > 0 && articles.map((article) => {
                 return(
@@ -55,9 +78,9 @@ export default function Allarticles(){
                              })}>
                                  Edit
                              </Button>
-                             {/* <Button onClick={() => delarticle(article?._id)}>
+                             <Button onClick={() => delarticle(article?._id)}>
                                  Delete
-                             </Button> */}
+                             </Button>
                           </Stack> 
                         </Box>
                     </GridItem>

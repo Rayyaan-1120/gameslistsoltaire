@@ -28,6 +28,10 @@ export default function Createarticle() {
   const [loading, setloading] = useState(false);
   const [articleheading, setarticleheading] = useState("");
   const [article, setarticle] = useState("");
+  const [articlecategoryid,setarticlecategoryid] = useState("");
+  const [categories, setcategories] = useState([]);
+
+
 
   const toast = useToast();
 
@@ -44,11 +48,15 @@ export default function Createarticle() {
     const obj = {
       article,
       articleheading,
+      articlecategoryid
     };
 
     createarticle(obj, setloading, toast);
   };
 
+  useEffect(() => {
+    getAllcategories(setloading, toast, setcategories);
+  }, []);
 
   return (
     <>
@@ -72,6 +80,17 @@ export default function Createarticle() {
             p={8}
           >
             <Stack spacing={4}>
+
+                  <FormControl>
+                <FormLabel>Article Category</FormLabel>
+                <Select placeholder="Select category" onChange={(e) => setarticlecategoryid(e.target.value)}>
+                  {categories.map((cat) => {
+                    return (
+                      <option value={cat?._id}>{cat?.gamecategoryname}</option>
+                    );
+                  })}
+                </Select>
+              </FormControl>
              
               <FormControl>
                 <FormLabel>Article Heading</FormLabel>
@@ -89,6 +108,8 @@ export default function Createarticle() {
                   size="lg"
                 />
               </FormControl>
+
+              
 
               <Stack spacing={10}>
                 <Button

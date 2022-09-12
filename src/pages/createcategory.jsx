@@ -23,6 +23,8 @@ export default function Creategamecategory() {
  
   const [loading, setloading] = useState(false);
   const [gamecategoryname, setgamecategoryname] = useState("");
+  const [imagealttag,setimagealttag] = useState('')
+
   const [gamefile, setgamefile] = useState(null);
 
   const toast = useToast();
@@ -30,7 +32,8 @@ export default function Creategamecategory() {
   const create = () => {
     if (
       !gamecategoryname ||
-      !gamefile
+      !gamefile ||
+      !imagealttag
     ) {
       return showtoast(
         toast,
@@ -42,6 +45,7 @@ export default function Creategamecategory() {
 
     const form = new FormData();
     form.append("gamecategoryname", gamecategoryname);
+    form.append('imagealttag',imagealttag)
     form.append("photo", gamefile[0]);
 
     creategamecategory(form, setloading, toast);
@@ -81,6 +85,14 @@ export default function Creategamecategory() {
                 <Input
                   type="file"
                   onChange={(e) => setgamefile(e.target.files)}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel>Image Alt tag</FormLabel>
+                <Input
+                  type="text"
+                  value={imagealttag}
+                  onChange={(e) => setimagealttag(e.target.value)}
                 />
               </FormControl>
              

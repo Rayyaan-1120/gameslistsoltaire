@@ -27,6 +27,8 @@ export default function EditGame() {
   const [loading, setloading] = useState(false);
   const [gamename, setgamename] = useState(locationstate ? locationstate.gamename : "");
   const [gamefile, setgamefile] = useState(null);
+  const [imagealttag,setimagealttag] = useState(locationstate.imagealttag ? locationstate.imagealttag :"")
+
   const [gamecategoryid, setgamecategoryid] = useState(locationstate ? locationstate.gamecategoryid :"");
   const [topyellowtitle, settopyellowtitle] = useState(locationstate ? locationstate.topyellowtitle :"");
   const [provider, setprovider] = useState(locationstate ? locationstate.provider :"");
@@ -49,6 +51,7 @@ export default function EditGame() {
     if (
       !gamename ||
       !topyellowtitle ||
+      !imagealttag ||
       !provider ||
       !stake ||
       !paragraphtitle ||
@@ -70,6 +73,7 @@ export default function EditGame() {
 
     const form = new FormData();
     form.append("gamename", gamename);
+    form.append("imagealttag",imagealttag)
     form.append("gamecategoryid",gamecategoryid)
     form.append("photo", gamefile);
     form.append("topyellowtitle", topyellowtitle);
@@ -123,6 +127,14 @@ export default function EditGame() {
                 <Input
                   type="file"
                   onChange={(e) => setgamefile(e.target.files[0])}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel>Image alt Tag</FormLabel>
+                <Input
+                  type="text"
+                  value={imagealttag}
+                  onChange={(e) => setimagealttag(e.target.value)}
                 />
               </FormControl>
               <FormControl>
