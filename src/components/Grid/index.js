@@ -136,6 +136,10 @@ export const Grid = ({ data, callfunction, provider, loading }) => {
                   }
 
                   item.rtp = xx;
+                  item.step1 = random_1;
+                  item.step2 = random_2;
+                  item.step3 = random_3;
+                  item.step4 = random_4;
 
                   return (
                     <div key={i} className={classes.gridItem}>

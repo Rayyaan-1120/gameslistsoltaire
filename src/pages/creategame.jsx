@@ -25,17 +25,17 @@ export default function Creategame() {
   const [imagealttag,setimagealttag] = useState('')
   const [gamefile, setgamefile] = useState(null);
   const [gamecategoryid, setgamecategoryid] = useState("");
-  const [topyellowtitle, settopyellowtitle] = useState("");
-  const [provider, setprovider] = useState("");
-  const [stake, setstake] = useState("");
-  const [paragraphtitle, setparagraphtitle] = useState("");
-  const [paragraph, setparagraph] = useState("");
-  const [orangetitle, setorangetitle] = useState("");
-  const [note, setnote] = useState("");
-  const [buttonone, setbuttonone] = useState("");
+//   const [topyellowtitle, settopyellowtitle] = useState("Tips Bermain Slot PP");
+//   const [provider, setprovider] = useState("PP");
+//   const [stake, setstake] = useState("200 – 9.8K");
+//   const [paragraphtitle, setparagraphtitle] = useState("");
+//   const [paragraph, setparagraph] = useState("");
+//   const [orangetitle, setorangetitle] = useState("LAKUKAN TIPS DARI AWAL & ULANGI");
+//   const [note, setnote] = useState("JIKA TERSEDIA / INGIN MEMBELI FITUR SPIN LAKUKAN POLA DIATAS SEBANYAK 2X");
+  const [buttonone, setbuttonone] = useState("DAFTAR BT88");
   const [buttononelink,setbuttononelink] = useState("")
   const [buttontwolink,setbuttontwolink] = useState("")
-  const [buttontwo, setbuttontwo] = useState("");
+  const [buttontwo, setbuttontwo] = useState("MAIN BT88");
   const [categories, setcategories] = useState([]);
 
   const toast = useToast();
@@ -45,13 +45,13 @@ export default function Creategame() {
       !gamename ||
       !gamefile ||
       !imagealttag ||
-      !topyellowtitle ||
-      !provider ||
-      !stake ||
-      !paragraphtitle ||
-      !paragraph ||
-      !orangetitle ||
-      !note ||
+    //   !topyellowtitle ||
+    //   !provider ||
+    //   !stake ||
+    //   !paragraphtitle ||
+    //   !paragraph ||
+    //   !orangetitle ||
+    //   !note ||
       !buttonone ||
       !buttontwo ||
       !buttononelink ||
@@ -70,13 +70,13 @@ export default function Creategame() {
     form.append('imagealttag',imagealttag)
     form.append("gamecategoryid",gamecategoryid)
     form.append("photo", gamefile[0]);
-    form.append("topyellowtitle", topyellowtitle);
-    form.append("provider", provider);
-    form.append("stake", stake);
-    form.append("paragraphtitle", paragraphtitle);
-    form.append("paragraph", paragraph);
-    form.append("orangetitle", orangetitle);
-    form.append("note", note);
+    // form.append("topyellowtitle", topyellowtitle);
+    // form.append("provider", provider);
+    // form.append("stake", stake);
+    // form.append("paragraphtitle", paragraphtitle);
+    // form.append("paragraph", paragraph);
+    // form.append("orangetitle", orangetitle);
+    // form.append("note", note);
     form.append("buttonone", buttonone);
     form.append("buttononelink", buttononelink);
     form.append("buttontwolink", buttontwolink);
@@ -142,7 +142,7 @@ export default function Creategame() {
                   })}
                 </Select>
               </FormControl>
-              <FormControl>
+              {/* <FormControl>
                 <FormLabel>Top Yellow title</FormLabel>
                 <Input
                   type="text"
@@ -165,9 +165,9 @@ export default function Creategame() {
                   value={stake}
                   onChange={(e) => setstake(e.target.value)}
                 />
-              </FormControl>
+              </FormControl> */}
 
-              <FormControl>
+              {/* <FormControl>
                 <FormLabel>Paragraph title</FormLabel>
                 <Input
                   type="text"
@@ -182,9 +182,9 @@ export default function Creategame() {
                   value={paragraph}
                   onChange={(e) => setparagraph(e.target.value)}
                 />
-              </FormControl>
+              </FormControl> */}
 
-              <FormControl>
+              {/* <FormControl>
                 <FormLabel>Orange title</FormLabel>
                 <Input
                   type="text"
@@ -198,7 +198,7 @@ export default function Creategame() {
                   value={note}
                   onChange={(e) => setnote(e.target.value)}
                 />
-              </FormControl>
+              </FormControl> */}
               <FormControl>
                 <FormLabel>Button one text</FormLabel>
                 <Input

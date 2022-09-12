@@ -50,14 +50,14 @@ export default function EditGame() {
   const update = () => {
     if (
       !gamename ||
-      !topyellowtitle ||
+    //   !topyellowtitle ||
       !imagealttag ||
-      !provider ||
-      !stake ||
-      !paragraphtitle ||
-      !paragraph ||
-      !orangetitle ||
-      !note ||
+    //   !provider ||
+    //   !stake ||
+    //   !paragraphtitle ||
+    //   !paragraph ||
+    //   !orangetitle ||
+    //   !note ||
       !buttonone ||
       !buttontwo || 
       !buttononelink || 
@@ -76,14 +76,15 @@ export default function EditGame() {
     form.append("imagealttag",imagealttag)
     form.append("gamecategoryid",gamecategoryid)
     form.append("photo", gamefile);
-    form.append("topyellowtitle", topyellowtitle);
-    form.append("provider", provider);
-    form.append("stake", stake);
-    form.append("paragraphtitle", paragraphtitle);
-    form.append("paragraph", paragraph);
-    form.append("orangetitle", orangetitle);
-    form.append("note", note);
+    // form.append("topyellowtitle", topyellowtitle);
+    // form.append("provider", provider);
+    // form.append("stake", stake);
+    // form.append("paragraphtitle", paragraphtitle);
+    // form.append("paragraph", paragraph);
+    // form.append("orangetitle", orangetitle);
+    // form.append("note", note);
     form.append("buttonone", buttonone);
+    form.append("buttontwo", buttontwo);
     form.append("buttononelink", buttononelink);
     form.append("buttontwolink", buttontwolink);
 
@@ -147,7 +148,7 @@ export default function EditGame() {
                   })}
                 </Select>
               </FormControl>
-              <FormControl>
+              {/* <FormControl>
                 <FormLabel>Top Yellow title</FormLabel>
                 <Input
                   type="text"
@@ -170,9 +171,9 @@ export default function EditGame() {
                   value={stake}
                   onChange={(e) => setstake(e.target.value)}
                 />
-              </FormControl>
+              </FormControl> */}
 
-              <FormControl>
+              {/* <FormControl>
                 <FormLabel>Paragraph title</FormLabel>
                 <Input
                   type="text"
@@ -187,9 +188,9 @@ export default function EditGame() {
                   value={paragraph}
                   onChange={(e) => setparagraph(e.target.value)}
                 />
-              </FormControl>
+              </FormControl> */}
 
-              <FormControl>
+              {/* <FormControl>
                 <FormLabel>Orange title</FormLabel>
                 <Input
                   type="text"
@@ -203,7 +204,7 @@ export default function EditGame() {
                   value={note}
                   onChange={(e) => setnote(e.target.value)}
                 />
-              </FormControl>
+              </FormControl> */}
               <FormControl>
                 <FormLabel>Button one text</FormLabel>
                 <Input
