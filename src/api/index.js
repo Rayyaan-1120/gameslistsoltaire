@@ -70,6 +70,38 @@ export const editgame = async (obj, setloading, toast, id, navigate) => {
   }
 };
 
+export const editbuttonlinkglobal = async (
+  obj,
+  setloading,
+  toast,
+  navigate
+) => {
+  try {
+    setloading(true);
+    const { data } = await api.put(`/updatebuttonlinksglobally`, obj);
+    setloading(false);
+    showtoast(
+      toast,
+      "Success",
+      "Button Link has been updated globally successfully",
+      "success"
+    );
+    localStorage.setItem("buttonlinks", JSON.stringify(obj));
+    setTimeout(() => {
+      navigate("/admin/games");
+    }, 1000);
+  } catch (error) {
+    console.log(error.message);
+    setloading(false);
+
+    if (error.response.data.message) {
+      showtoast(toast, "Error", error.response.data.message, "error");
+    } else {
+      showtoast(toast, "Error", "Something went wrong", "error");
+    }
+  }
+};
+
 export const deletegame = async (toast, id, fetchagain, setfetchagain) => {
   try {
     const { data } = await api.delete(`/deletegame/${id}`);

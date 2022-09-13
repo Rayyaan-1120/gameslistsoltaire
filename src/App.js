@@ -25,6 +25,7 @@ import Editscript from "./pages/editscript";
 import Allslidertexts from "./pages/allslidertext";
 import Editslidertext from "./pages/editslidertext";
 import Updateadmin from "./pages/updateadmin";
+import GlobalButtonlinks from "./pages/Globalbuttonlink";
 
 export const App = () => {
   const { admin } = useAppContext();
@@ -88,6 +89,7 @@ export const App = () => {
           <Route path="editscript" element={<Editscript />} />
           <Route path="editslidertext" element={<Editslidertext />} />
           <Route path="updatepassword" element={<Updateadmin />} />
+          <Route path="globalbuttonlinks" element={<GlobalButtonlinks />} />
         </Route>
         <Route path="/adminlogin" element={<Adminlogin />} />
         <Route

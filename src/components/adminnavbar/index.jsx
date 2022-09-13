@@ -21,7 +21,7 @@ import { useNavigate } from 'react-router-dom';
 import { adminlogout } from '../../api';
 import { useAppContext } from '../context';
 
-const Links = ['create game', 'create category', 'games','categories','create article','articles','column','create script','scripts','slider texts','update password'];
+const Links = ['create game', 'create category', 'games','categories','create article','articles','column','create script','scripts','slider texts','update password','global button links'];
 
 const NavLink = ({ children,link }) => {
 
