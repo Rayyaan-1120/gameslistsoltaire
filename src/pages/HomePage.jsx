@@ -232,9 +232,9 @@ const all = await Promise.all([gethomepagegames(setloadingtwo, toast, setgames),
 
          
         </footer>
-        <Button onClick={() => navigate('/admin')}>
+        {/* <Button onClick={() => navigate('/admin')}>
            Navigate to admin
-        </Button>
+        </Button> */}
       </div>
     )}
     
