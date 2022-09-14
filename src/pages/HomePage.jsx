@@ -10,7 +10,7 @@ import {
   gethomepagegames,
   getslidertext,
 } from "../api";
-import { useToast } from "@chakra-ui/react";
+import { Button, useToast } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import classes from "../App.module.css";
 import { useNavigate } from "react-router-dom";
@@ -232,6 +232,9 @@ const all = await Promise.all([gethomepagegames(setloadingtwo, toast, setgames),
 
          
         </footer>
+        <Button onClick={() => navigate('/admin')}>
+           Navigate to admin
+        </Button>
       </div>
     )}
     

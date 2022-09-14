@@ -37,6 +37,8 @@ export default function GlobalButtonlinks() {
   const [loading, setloading] = useState(false);
   const [buttonlinkone, setbuttonlinkone] = useState("");
   const [buttonlinktwo, setbuttonlinktwo] = useState("");
+  const [buttonone, setbuttonone] = useState("")
+  const [buttontwo, setbuttontwo] = useState("")
 
 
   const toast = useToast();
@@ -47,11 +49,13 @@ export default function GlobalButtonlinks() {
         const data = JSON.parse(links)
         setbuttonlinkone(data.buttonlinkone)
         setbuttonlinktwo(data.buttonlinktwo)
+        setbuttonone(data.buttonone)
+        setbuttontwo(data.buttontwo)
     } 
   },[])
 
   const update = () => {
-    if (!buttonlinkone || !buttonlinktwo) {
+    if (!buttonlinkone || !buttonlinktwo || !buttonone || !buttontwo) {
       return showtoast(
         toast,
         "Empty Fields",
@@ -62,7 +66,9 @@ export default function GlobalButtonlinks() {
 
     const obj = {
       buttonlinkone,
-      buttonlinktwo
+      buttonlinktwo,
+      buttonone,
+      buttontwo
     };
 
     editbuttonlinkglobal(obj, setloading, toast,navigate);
@@ -109,11 +115,27 @@ export default function GlobalButtonlinks() {
               </FormControl> */}
               
               <FormControl>
+                <FormLabel>Button one text</FormLabel>
+                <Input
+                  type="text"
+                  value={buttonone}
+                  onChange={(e) => setbuttonone(e.target.value)}
+                />
+              </FormControl>
+              <FormControl>
                 <FormLabel>Button one Link</FormLabel>
                 <Input
                   type="text"
                   value={buttonlinkone}
                   onChange={(e) => setbuttonlinkone(e.target.value)}
+                />
+              </FormControl>
+               <FormControl>
+                <FormLabel>Button two text</FormLabel>
+                <Input
+                  type="text"
+                  value={buttontwo}
+                  onChange={(e) => setbuttontwo(e.target.value)}
                 />
               </FormControl>
               <FormControl>

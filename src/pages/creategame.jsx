@@ -25,6 +25,7 @@ export default function Creategame() {
   const [imagealttag,setimagealttag] = useState('')
   const [gamefile, setgamefile] = useState(null);
   const [gamecategoryid, setgamecategoryid] = useState("");
+  const [imageUrl,setImageUrl] = useState("")
 //   const [topyellowtitle, settopyellowtitle] = useState("Tips Bermain Slot PP");
 //   const [provider, setprovider] = useState("PP");
 //   const [stake, setstake] = useState("200 – 9.8K");
@@ -32,19 +33,19 @@ export default function Creategame() {
 //   const [paragraph, setparagraph] = useState("");
 //   const [orangetitle, setorangetitle] = useState("LAKUKAN TIPS DARI AWAL & ULANGI");
 //   const [note, setnote] = useState("JIKA TERSEDIA / INGIN MEMBELI FITUR SPIN LAKUKAN POLA DIATAS SEBANYAK 2X");
-  const [buttonone, setbuttonone] = useState("DAFTAR BT88");
+  const [buttonone, setbuttonone] = useState("");
   const [buttononelink,setbuttononelink] = useState("")
   const [buttontwolink,setbuttontwolink] = useState("")
-  const [buttontwo, setbuttontwo] = useState("MAIN BT88");
+  const [buttontwo, setbuttontwo] = useState("");
   const [categories, setcategories] = useState([]);
 
   const toast = useToast();
 
+
   const create = () => {
     if (
       !gamename ||
-      !gamefile ||
-      !imagealttag ||
+      !imagealttag
     //   !topyellowtitle ||
     //   !provider ||
     //   !stake ||
@@ -52,10 +53,10 @@ export default function Creategame() {
     //   !paragraph ||
     //   !orangetitle ||
     //   !note ||
-      !buttonone ||
-      !buttontwo ||
-      !buttononelink ||
-      !buttontwolink
+      // !buttonone ||
+      // !buttontwo ||
+      // !buttononelink ||
+      // !buttontwolink
     ) {
       return showtoast(
         toast,
@@ -65,11 +66,15 @@ export default function Creategame() {
       );
     }
 
+    console.log(imageUrl,'imagurl')
+    
+
     const form = new FormData();
     form.append("gamename", gamename);
     form.append('imagealttag',imagealttag)
     form.append("gamecategoryid",gamecategoryid)
-    form.append("photo", gamefile[0]);
+    form.append("photo", gamefile);
+    form.append("imageurl",imageUrl)
     // form.append("topyellowtitle", topyellowtitle);
     // form.append("provider", provider);
     // form.append("stake", stake);
@@ -121,7 +126,15 @@ export default function Creategame() {
                 <FormLabel>Game image</FormLabel>
                 <Input
                   type="file"
-                  onChange={(e) => setgamefile(e.target.files)}
+                  onChange={(e) => setgamefile(e.target.files[0])}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel>Image Url</FormLabel>
+                <Input
+                  type="text"
+                  value={imageUrl}
+                  onChange={(e) => setImageUrl(e.target.value)}
                 />
               </FormControl>
                 <FormControl>
@@ -199,7 +212,7 @@ export default function Creategame() {
                   onChange={(e) => setnote(e.target.value)}
                 />
               </FormControl> */}
-              <FormControl>
+              {/* <FormControl>
                 <FormLabel>Button one text</FormLabel>
                 <Input
                   type="text"
@@ -230,7 +243,7 @@ export default function Creategame() {
                   value={buttontwolink}
                   onChange={(e) => setbuttontwolink(e.target.value)}
                 />
-              </FormControl>
+              </FormControl> */}
               <Stack spacing={10}>
                 <Button
                 onClick={create}

@@ -42,6 +42,8 @@ export default function EditGame() {
   const [buttontwo, setbuttontwo] = useState( locationstate ? locationstate.buttontwo :"");
   const [buttontwolink, setbuttontwolink] = useState( locationstate?.buttontwolink ? locationstate.buttontwolink :"");
   const [categories, setcategories] = useState([]);
+  const [imageUrl,setImageUrl] = useState("")
+
 
   const toast = useToast();
 
@@ -51,17 +53,17 @@ export default function EditGame() {
     if (
       !gamename ||
     //   !topyellowtitle ||
-      !imagealttag ||
+      !imagealttag 
     //   !provider ||
     //   !stake ||
     //   !paragraphtitle ||
     //   !paragraph ||
     //   !orangetitle ||
     //   !note ||
-      !buttonone ||
-      !buttontwo || 
-      !buttononelink || 
-      !buttontwolink
+      // !buttonone ||
+      // !buttontwo || 
+      // !buttononelink || 
+      // !buttontwolink
     ) {
       return showtoast(
         toast,
@@ -76,6 +78,8 @@ export default function EditGame() {
     form.append("imagealttag",imagealttag)
     form.append("gamecategoryid",gamecategoryid)
     form.append("photo", gamefile);
+    form.append("imageurl",imageUrl)
+
     // form.append("topyellowtitle", topyellowtitle);
     // form.append("provider", provider);
     // form.append("stake", stake);
@@ -128,6 +132,14 @@ export default function EditGame() {
                 <Input
                   type="file"
                   onChange={(e) => setgamefile(e.target.files[0])}
+                />
+              </FormControl>
+                <FormControl>
+                <FormLabel>Image Url</FormLabel>
+                <Input
+                  type="text"
+                  value={imageUrl}
+                  onChange={(e) => setImageUrl(e.target.value)}
                 />
               </FormControl>
               <FormControl>

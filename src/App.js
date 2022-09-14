@@ -85,8 +85,8 @@ export const App = () => {
           <Route path="editarticle" element={<Editarticle />} />
           {/* <Route path="createcolumn" element={<Createcolumn />} /> */}
           <Route path="editcolumn" element={<Editcolumn />} />
-          <Route path="createscript" element={<Createscript />} />
-          <Route path="editscript" element={<Editscript />} />
+          {/* <Route path="createscript" element={<Createscript />} /> */}
+          {/* <Route path="editscript" element={<Editscript />} /> */}
           <Route path="editslidertext" element={<Editslidertext />} />
           <Route path="updatepassword" element={<Updateadmin />} />
           <Route path="globalbuttonlinks" element={<GlobalButtonlinks />} />
