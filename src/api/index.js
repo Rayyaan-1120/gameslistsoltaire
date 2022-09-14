@@ -11,8 +11,8 @@ export function showtoast(toast, title, description, status) {
 }
 
 const api = axios.create({
-  // baseURL: "https://gamelist-backendserver.herokuapp.com/api",
-  baseURL: "http://localhost:5000/api",
+  baseURL: "https://gamelist-backendserver.herokuapp.com/api",
+  // baseURL: "http://localhost:5000/api",
 });
 
 export const creategame = async (
