@@ -25,34 +25,35 @@ import {
   editarticle,
   editbuttonlinkglobal,
   getAllcategories,
+  getbutton,
   showtoast,
 } from "../api";
 
 export default function GlobalButtonlinks() {
-
-    
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
 
   const [loading, setloading] = useState(false);
   const [buttonlinkone, setbuttonlinkone] = useState("");
   const [buttonlinktwo, setbuttonlinktwo] = useState("");
-  const [buttonone, setbuttonone] = useState("")
-  const [buttontwo, setbuttontwo] = useState("")
-
+  const [buttonone, setbuttonone] = useState("");
+  const [buttontwo, setbuttontwo] = useState("");
+  const [data, setdata] = useState(null);
+  console.log(data,'data')
 
   const toast = useToast();
 
   useEffect(() => {
-    const links = localStorage.getItem("buttonlinks")
-    if(links !== null){
-        const data = JSON.parse(links)
-        setbuttonlinkone(data.buttonlinkone)
-        setbuttonlinktwo(data.buttonlinktwo)
-        setbuttonone(data.buttonone)
-        setbuttontwo(data.buttontwo)
-    } 
-  },[])
+    getbutton(setloading, toast, setdata);
+  }, []);
+
+  useEffect(() => {
+    if (data !== null) {
+      setbuttonlinkone(data?.buttononelink);
+      setbuttonlinktwo(data?.buttontwolink);
+      setbuttonone(data?.buttonone);
+      setbuttontwo(data?.buttontwo);
+    }
+  }, [loading]);
 
   const update = () => {
     if (!buttonlinkone || !buttonlinktwo || !buttonone || !buttontwo) {
@@ -68,17 +69,15 @@ export default function GlobalButtonlinks() {
       buttonlinkone,
       buttonlinktwo,
       buttonone,
-      buttontwo
+      buttontwo,
     };
 
-    editbuttonlinkglobal(obj, setloading, toast,navigate);
+    editbuttonlinkglobal(obj, setloading, toast, navigate);
   };
 
-//   useEffect(() => {
-//     getAllcategories(setloading, toast, setcategories);
-//   }, []);
-
-
+  //   useEffect(() => {
+  //     getAllcategories(setloading, toast, setcategories);
+  //   }, []);
 
   return (
     <>
@@ -98,11 +97,11 @@ export default function GlobalButtonlinks() {
             bg={useColorModeValue("white", "gray.700")}
             boxShadow={"lg"}
             w={"1000px"}
-            mx='auto'
+            mx="auto"
             p={8}
           >
             <Stack spacing={4}>
-{/* 
+              {/* 
                   <FormControl>
                 <FormLabel>Article Category</FormLabel>
                 <Select defaultValue={articlecategoryid} placeholder="Select category" onChange={(e) => setarticlecategoryid(e.target.value)}>
@@ -113,7 +112,7 @@ export default function GlobalButtonlinks() {
                   })}
                 </Select>
               </FormControl> */}
-              
+
               <FormControl>
                 <FormLabel>Button one text</FormLabel>
                 <Input
@@ -130,7 +129,7 @@ export default function GlobalButtonlinks() {
                   onChange={(e) => setbuttonlinkone(e.target.value)}
                 />
               </FormControl>
-               <FormControl>
+              <FormControl>
                 <FormLabel>Button two text</FormLabel>
                 <Input
                   type="text"
@@ -156,19 +155,17 @@ export default function GlobalButtonlinks() {
                     bg: "blue.500",
                   }}
                 >
-                    {loading ? (
-<Spinner
-  thickness='4px'
-  speed='0.65s'
-  emptyColor='gray.200'
-  color='green.500'
-  size='xl'
-/>
-                    ) : (
-                  'Update Globally'
-
-                    )}
-
+                  {loading ? (
+                    <Spinner
+                      thickness="4px"
+                      speed="0.65s"
+                      emptyColor="gray.200"
+                      color="green.500"
+                      size="xl"
+                    />
+                  ) : (
+                    "Update Globally"
+                  )}
                 </Button>
               </Stack>
             </Stack>

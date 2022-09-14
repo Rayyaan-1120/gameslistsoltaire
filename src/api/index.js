@@ -11,8 +11,8 @@ export function showtoast(toast, title, description, status) {
 }
 
 const api = axios.create({
-  baseURL: "https://gamelist-backendserver.herokuapp.com/api",
-  // baseURL: "http://localhost:5000/api",
+  // baseURL: "https://gamelist-backendserver.herokuapp.com/api",
+  baseURL: "http://localhost:5000/api",
 });
 
 export const creategame = async (
@@ -677,6 +677,24 @@ export const getslidertext = async (setloading, toast, setdata) => {
   try {
     setloading(true);
     const { data } = await api.get(`/getslidertext`);
+    setdata(data.data);
+    setloading(false);
+  } catch (error) {
+    console.log(error.message);
+    setloading(false);
+
+    if (error.response.data.message) {
+      showtoast(toast, "Error", error.response.data.message, "error");
+    } else {
+      showtoast(toast, "Error", "Something went wrong", "error");
+    }
+  }
+};
+
+export const getbutton = async (setloading, toast, setdata) => {
+  try {
+    setloading(true);
+    const { data } = await api.get(`/getButton`);
     setdata(data.data);
     setloading(false);
   } catch (error) {

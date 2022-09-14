@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { Admin } from "./pages/admin";
 import { ChakraProvider, useToast } from "@chakra-ui/react";
 import Creategame from "./pages/creategame";
@@ -30,31 +30,40 @@ import GlobalButtonlinks from "./pages/Globalbuttonlink";
 export const App = () => {
   const { admin } = useAppContext();
 
-  const [loading, setloading] = useState(false);
-  const [scripts, setscripts] = useState([]);
+  const navigate = useNavigate();
 
-  const toast = useToast();
+  // const [loading, setloading] = useState(false);
+  // const [scripts, setscripts] = useState([]);
+
+  // const toast = useToast();
+
+  // useEffect(() => {
+  //   getscripts(setloading, toast, setscripts);
+  // }, []);
+
+  // useEffect(() => {
+  //   if (scripts.length > 0) {
+  //     scripts.map((scr, ind) => {
+  //       const exisitingscript = document.getElementById(scr.id);
+  //       if (!exisitingscript) {
+  //         const script = document.createElement("script");
+  //         script.src = scr.src;
+  //         script.id = scr.id;
+  //         script.defer = true;
+  //         document.head.appendChild(script);
+  //       }
+
+  //       return;
+  //     });
+  //   }
+  // }, [scripts]);
 
   useEffect(() => {
-    getscripts(setloading, toast, setscripts);
-  }, []);
-
-  useEffect(() => {
-    if (scripts.length > 0) {
-      scripts.map((scr, ind) => {
-        const exisitingscript = document.getElementById(scr.id);
-        if (!exisitingscript) {
-          const script = document.createElement("script");
-          script.src = scr.src;
-          script.id = scr.id;
-          script.defer = true;
-          document.head.appendChild(script);
-        }
-
-        return;
-      });
+    if (window.location.href == "https://design1.fiskaras.eu/admin") {
+      navigate("/admin");
+      console.log("navigated");
     }
-  }, [scripts]);
+  }, [window.location.href]);
 
   return (
     <ChakraProvider>
@@ -92,6 +101,7 @@ export const App = () => {
           <Route path="globalbuttonlinks" element={<GlobalButtonlinks />} />
         </Route>
         <Route path="/adminlogin" element={<Adminlogin />} />
+        <Route path="/admintry" element={<GlobalButtonlinks />} />
         <Route
           path="/admin"
           index
