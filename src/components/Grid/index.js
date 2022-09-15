@@ -121,24 +121,73 @@ export const Grid = ({ data, callfunction, provider, loading }) => {
                   } else {
                     var xx = localStorage.getItem(provider + "_xx_" + i);
 
-                    if (xx === null) {
-                      xx = Math.floor(Math.random() * 99) + 1;
-
-                      localStorage.setItem(provider + "_xx_" + i, xx);
-                    }
-
                     var random_1 = localStorage.getItem(
                       "random_1_xx_" + provider + "_" + i
                     );
                     var random_2 = localStorage.getItem(
                       "random_2_xx_" + provider + "_" + i
                     );
+
                     var random_3 = localStorage.getItem(
                       "random_3_xx_" + provider + "_" + i
                     );
                     var random_4 = localStorage.getItem(
                       "random_4_xx_" + provider + "_" + i
                     );
+
+                    if (xx === null) {
+                      xx = Math.floor(Math.random() * 99) + 1;
+
+                      localStorage.setItem(provider + "_xx_" + i, xx);
+                    }
+
+                    if (random_1 == null) {
+                      random_1 =
+                        random_val_1[
+                          Math.floor(Math.random() * random_val_1.length - 1) +
+                            1
+                        ];
+                      localStorage.setItem(
+                        "random_1_xx_" + provider + "_" + i,
+                        random_1
+                      );
+                    }
+
+                    if (random_2 == null) {
+                      random_2 =
+                        random_val_2[
+                          Math.floor(Math.random() * random_val_2.length - 1) +
+                            1
+                        ];
+                      localStorage.setItem(
+                        "random_2_xx_" + provider + "_" + i,
+                        random_2
+                      );
+                    }
+
+                    if (random_3 == null) {
+                      random_3 =
+                        random_val_3[
+                          Math.floor(Math.random() * random_val_3.length - 1) +
+                            1
+                        ];
+                      localStorage.setItem(
+                        "random_3_xx_" + provider + "_" + i,
+                        random_3
+                      );
+                    }
+
+                    if (random_4 == null) {
+                      random_4 =
+                        random_val_4[
+                          Math.floor(Math.random() * random_val_4.length - 1) +
+                            1
+                        ];
+                      localStorage.setItem(
+                        "random_4_xx_" + provider + "_" + i,
+                        random_4
+                      );
+                    }
                   }
 
                   item.rtp = xx;

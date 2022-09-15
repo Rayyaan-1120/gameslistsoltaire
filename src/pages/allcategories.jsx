@@ -34,9 +34,9 @@ export default function Allcategories(){
     }
 
     return(
-        <Box w="full" bg={'gray.500'}>
+        <Box w="full" bg={'gray.500'} minH={'91vh'}>
              <Heading w="100%" textAlign={'center'}>All Game Categories</Heading>
-           <Grid w="80%" mt={10} mx="auto" templateColumns={'repeat(8, 1fr)'} gap={8}>
+           <Grid w="80%" mt={10} mx="auto" templateColumns={'repeat(5, 1fr)'} gap={8}>
               {gamecategories.length > 0 && gamecategories.map((gamec) => {
                 return(
                     <GridItem w={'100%'} h={250}>

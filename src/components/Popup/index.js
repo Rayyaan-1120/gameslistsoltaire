@@ -27,14 +27,8 @@ export const Popup = ({ close, value, provider }) => {
         {value?.rtp >= 20 && (
           <>
             {/* <header>{value?.topyellowtitle}</header> */}
-            <header>Tips Bermain Slot PP</header>
+            <header>Tips Bermain</header>
             <div className={[classes.provider, classes.content].join(" ")}>
-              <div>
-                <p>Provider</p>
-                {/* <p>{value?.provider}</p> */}
-                <p>PP</p>
-              </div>
-
               <div>
                 <p>Stake Bet</p>
                 {/* <p>{value?.stake}</p> */}
@@ -42,19 +36,24 @@ export const Popup = ({ close, value, provider }) => {
               </div>
             </div>
             {/* <div className={classes.subheading}>{value.paragraphtitle}</div> */}
-            <div className={classes.subheading}>POLA KHUSUS DARI BT88 RTP</div>
+            <div className={classes.subheading}>POLA BERMAIN KHUSUS</div>
             <div className={[classes.body, classes.content].join(" ")}>
               {/* {parse(value?.paragraph)} */}
 
+              {/* <p>{value.step1}X Spin normal (manual tanpa ceklis)</p> */}
+
+              <p>Step 1: Panaskan Mesin Slot!</p>
               <p>{value.step1}X Spin normal (manual tanpa ceklis)</p>
 
-              <p>Step 1: Panaskan Mesin Slot!</p>
-              <p>{value.step2}X Spin normal (manual tanpa ceklis)</p>
+              <p>Step 2 : Naikkan Bet !</p>
+              <p>{value.step2}X Spin cepat (auto)</p>
 
-              <p>Step 1: Panaskan Mesin Slot!</p>
-              <p>{value.step3}X Spin normal (manual tanpa ceklis)</p>
+              <p>Step 3 : Stop Spin !</p>
+              <p>{value.step3}X Tangkap spin (manual tanpa ceklis)</p>
 
-              <p style={{ color: "red" }}>Langkah Terakhir</p>
+              <p style={{ color: "red", fontWeight: "bolder" }}>
+                Langkah Terakhir
+              </p>
               <p>{value.step4}X Spin turbo (manual)</p>
             </div>
             {/* <div className={classes.subHeader}>{value?.orangetitle}</div> */}
